@@ -1,0 +1,23 @@
+<div class="container">
+    <h3 class="header">Login Here</h3>
+    <div class="center">
+        <form [formGroup]="form"(submit)="onLoginForm()">
+            
+            <div class="inlinestyle">
+                 <div >
+                    <label>User Name</label>
+                    <input type="text" name="text" formControlName="username" required>
+                  </div>
+
+                <div >
+                    <label>Password</label>
+                    <input type="password" name="password" formControlName="password" required>
+                  </div>
+
+            </div>
+            <button class="btn btn-primary" type="submit">login now</button>
+        </form>
+    </div>
+    <button class="btn btn-primary signup" type="submit" routerLink="/
+    signup">create an account</button>
+</div>

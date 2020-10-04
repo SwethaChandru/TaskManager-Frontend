@@ -1,0 +1,42 @@
+.header
+{
+    text-align:center
+}
+/* .center
+{ */
+    /* height: auto;
+    width: 400px;
+    float: right;
+    margin-right:300px;
+    margin-top: 30px; */
+    /* text-align: center; */
+    /* background: chartreuse; */
+    
+/* } */
+.center
+{
+  margin: auto;
+  width: 30%;
+  border: 1px solid green;
+  padding: 30px;
+  background-color: ghostwhite;
+}
+
+ 
+label,input,select
+{
+    width: 100%;
+}
+label,input,button
+{
+    line-height: 25px;
+    display: flex;
+    /* margin-top: 20px; */
+    margin-top: 5px;
+}
+button
+{
+    margin-top: 25px;
+    border-style: none;
+    margin-left: 150px;
+}

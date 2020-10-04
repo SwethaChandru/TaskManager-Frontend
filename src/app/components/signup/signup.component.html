@@ -1,0 +1,43 @@
+<app-navbar></app-navbar>
+<div  >
+    <h3 class="header">New User Registeration</h3>
+    <div class="center">
+        <form [formGroup]="form"(submit)="onSignupForm()">
+            <div >
+                <div >
+                    <label>Name</label>
+                    <input type="text" name="name" formControlName="name" required>
+                </div>
+
+                <div >
+                    <label for="cars">Choose a role:</label>
+                    <select name="cars" id="cars" style="padding: 8px;" formControlName="role">
+                        <option value="admin">Admin</option>
+                        <option value="user">User</option> 
+                    </select>
+                </div>
+
+                <div >
+                    <label>Email</label>
+                    <input type="email" name="email" formControlName="email" required>
+                </div>
+
+                <div >
+                    <label>User Name</label>
+                    <input type="text" name="username" formControlName="username" required>
+                </div>
+
+                <div >
+                    <label>Mobile Num</label>
+                    <input type="tel" name="phno" formControlName="phonenum" required>
+                </div>
+                <div >
+                    <label>Password</label>
+                    <input type="password" name="password" formControlName="password" required>
+                  </div>
+           
+            </div>
+            <button  type="submit">Register</button>
+        </form>
+    </div>
+</div>

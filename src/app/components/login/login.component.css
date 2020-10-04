@@ -1,0 +1,33 @@
+.header
+{
+    text-align:center
+}
+.center {
+  margin: auto;
+  width: 35%;
+  border: 1px solid green;
+  padding: 30px;
+  background-color: ghostwhite;
+}
+.signup
+{
+    margin:10px auto;
+    width: 35%;
+
+}
+label,input
+{
+    width: 100%;
+}
+label,input,button
+{
+    line-height: 25px;
+    display: flex;
+    margin-top: 5px;
+}
+button
+{
+    margin-top: 25px;
+    border-style: none;
+    margin-left: 150px;
+}

@@ -1,0 +1,40 @@
+.header
+{
+    text-align:center
+}
+.center {
+  
+  margin-left: 350px;
+  width: 75%;
+  border: 1px  gray;
+  padding: 20px 20px 60px 20px;    
+  background-color: ghostwhite;
+}
+.signup
+{
+    margin:10px auto;
+    width: 35%;
+
+}
+
+label,input,textarea,select
+{
+    width: 100%;
+}
+label,input
+{
+    line-height: 25px;
+    display: flex;
+    margin-top: 5px;
+}
+button
+{
+    background-color:rgb(12, 209, 166);
+    float: right;
+    border-radius: 17px;
+    padding: 10px;
+    border-style: none;
+    margin-top:10px ;
+    margin-left: 10px;
+    width: 10%;
+}
