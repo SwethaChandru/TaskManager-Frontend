@@ -1,39 +1,39 @@
 <app-navbar></app-navbar>
 <div class="container">
-    <h1 class="header">Task assignment</h1>
-    <div class="center">
+    <h2 class="header  mt-5">TASK ASSIGNMENT</h2>
+    <div class="center ">
         <form [formGroup]="form"(submit)="onAddTask()">
             <div>
                     <div >
                         <label>Task Title</label>
-                        <input type="text" name="text" placeholder="task name"  required formControlName="title">
+                        <input type="text" name="text" placeholder="Task Name"  required formControlName="title">
                     </div>
 
                     <div class="row">
                         <div class="col-md-6">
                             <label>Date</label>
-                            <input type="date" name="text" placeholder="task name"  required formControlName="date">
+                            <input type="date" name="text" required formControlName="date">
                         </div>
                         <div class="col-md-6">
-                            <label for="cars">Choose a role:</label>
+                            <label for="cars">Choose a role</label>
                             <select  name="cars" id="cars" style="padding: 5px;"  formControlName="user">
                                 <option *ngFor="let user of userdetails" value={{user.username}}>{{user.username}}</option>  
                             </select>
                         </div>
                     </div>
                 <div >
-                    <label>description</label>
-                    <textarea rows="5" formControlName="description"></textarea>
+                    <label>Description</label>
+                    <textarea rows="5" formControlName="description" placeholder="Describe it .."></textarea>
                 </div>
 
                 <div >
                     <label>Comments</label>
-                    <textarea rows="5" formControlName="comments"></textarea>
+                    <textarea rows="5" formControlName="comments" placeholder="Add Comments"></textarea>
                 </div>
 
             </div>
             <div>
-                <button class="btn btn-primary" type="submit">cancel</button>
+            <button class="btn btn-primary" type="submit">cancel</button>
             <button class="btn btn-primary" type="submit">create</button>
             </div>
             

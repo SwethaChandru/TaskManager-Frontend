@@ -1,15 +1,25 @@
-
+.header
+{
+  text-align:center;
+  margin-top: 50px;
+  margin-left: 150px;
+  letter-spacing: 1px;
+}
   td, th {
     
     font-size: large;
     border: 1px solid #dddddd;
-    text-align: left;
+    text-align: center;
     padding: 15px;
   }
   .centre
   {
-    margin: auto;
-    width: 50%;
+    margin-top: 60px;
+    margin-left: 450px;
+    font-size: large;
+    width: 70%;
+    letter-spacing: 1.3px;
+    line-height: 50px;
     padding: 10px;
   }
   button

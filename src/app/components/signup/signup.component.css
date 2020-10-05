@@ -1,25 +1,19 @@
 .header
 {
-    text-align:center
+    text-align:center;
+    /* margin-top: 50px; */
 }
-/* .center
-{ */
-    /* height: auto;
-    width: 400px;
-    float: right;
-    margin-right:300px;
-    margin-top: 30px; */
-    /* text-align: center; */
-    /* background: chartreuse; */
-    
-/* } */
 .center
 {
-  margin: auto;
+  margin-top: 60px;
+  margin-left: 600px;
+  font-size: large;
+  letter-spacing: 0.5px;
+  line-height: 40px;
   width: 30%;
-  border: 1px solid green;
   padding: 30px;
   background-color: ghostwhite;
+  color: rgb(43, 37, 37);
 }
 
  
@@ -39,4 +33,10 @@ button
     margin-top: 25px;
     border-style: none;
     margin-left: 150px;
+    width:25%;
+    justify-content: center;
+    height: 30px;
+    border-radius: 15px;
+    color: white;
+    background-color:rgb(12, 209, 166);
 }

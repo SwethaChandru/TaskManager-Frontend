@@ -1,13 +1,14 @@
 .header
 {
-    text-align:center
+    text-align:center;
 }
 .center {
-  margin: auto;
+  margin: 200px 550px;
   width: 35%;
-  border: 1px solid green;
+  box-shadow: wheat;
   padding: 30px;
   background-color: ghostwhite;
+  height: 50%;
 }
 .signup
 {
@@ -17,17 +18,24 @@
 }
 label,input
 {
+    letter-spacing: 1px;
+    font-size: large;
     width: 100%;
 }
 label,input,button
 {
-    line-height: 25px;
+    line-height: 35px;
     display: flex;
     margin-top: 5px;
+    font-size: large;
 }
 button
 {
-    margin-top: 25px;
+    background-color:rgb(12, 209, 166);
+    margin-top: 45px;
     border-style: none;
-    margin-left: 150px;
+    margin-left: 190px;
+    border-radius: 15px;
+    width: 20%;
+    padding-left: 25px;
 }

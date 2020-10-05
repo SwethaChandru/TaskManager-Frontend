@@ -1,14 +1,17 @@
 .header
 {
-    text-align:center
+    text-align:center;
+    margin-left:120px;
+    letter-spacing: 1px;
 }
 .center {
-  
-  margin-left: 350px;
+  margin-top: 60px;
+  margin-left: 260px;
   width: 75%;
-  border: 1px  gray;
-  padding: 20px 20px 60px 20px;    
+  /* border: 1px  gray; */
+  padding: 20px 20px 70px 20px;    
   background-color: ghostwhite;
+  font-size: large;
 }
 .signup
 {
@@ -20,12 +23,15 @@
 label,input,textarea,select
 {
     width: 100%;
+    letter-spacing: 1px;
 }
 label,input
 {
     line-height: 25px;
     display: flex;
     margin-top: 5px;
+    font-size: large;
+    letter-spacing: 1px;
 }
 button
 {
@@ -37,4 +43,6 @@ button
     margin-top:10px ;
     margin-left: 10px;
     width: 10%;
+    font-size: large;
+    letter-spacing: 1px;
 }

@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
-<div  >
-    <h3 class="header">New User Registeration</h3>
-    <div class="center">
+<div *ngIf="signupflag"  >
+    <h3 class="header mt-5">New User Registeration</h3>
+    <div class="center card shadow p-3 mb-5 bg-white rounded">
         <form [formGroup]="form"(submit)="onSignupForm()">
             <div >
                 <div >
@@ -28,7 +28,7 @@
                 </div>
 
                 <div >
-                    <label>Mobile Num</label>
+                    <label>Phone Num</label>
                     <input type="tel" name="phno" formControlName="phonenum" required>
                 </div>
                 <div >
@@ -41,3 +41,20 @@
         </form>
     </div>
 </div>
+
+<div *ngIf="changeflag" class="container" >
+    <h3 class="header">Change Password</h3>
+    <div class="center">
+        <form #changeForm="ngForm" (submit)="onChangeForm(changeForm)">
+            <div class="inlinestyle">
+            <label>Old Password</label>
+            <input type="password" name="old"  ngModel required >
+            <label>New Password</label>
+            <input type="password" name="new" ngModel required >
+            </div>
+            
+            <button class="btn btn-primary" type="submit">Reset</button>
+        </form>
+    </div>
+</div>
+

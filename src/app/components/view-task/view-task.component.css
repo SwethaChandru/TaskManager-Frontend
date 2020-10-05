@@ -3,11 +3,45 @@
   margin: auto;
   width: 50%;
   padding: 10px;
+  font-size: large;
 }
 
 .but{
-  float: right;
   text-decoration: none;
   border: none;
   background:transparent;
 }
+
+.del
+{
+  float: right;
+  color: red;
+  border: none;
+  background:transparent;
+}
+.complete
+{
+  float: right;
+  color: green;
+  border: none;
+  background: transparent;
+}
+
+.edit
+{
+  float: right;
+  color: blue;
+  border: none;
+  background: transparent;
+}
+input{
+  line-height: 40px;
+}
+.container
+{
+  margin-top: 50px;;
+  font-size: large;
+  letter-spacing: 0.5px;
+  margin-left: 350px;
+}
+

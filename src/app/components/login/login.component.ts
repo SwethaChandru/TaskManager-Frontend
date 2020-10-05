@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormGroup, Validators, FormControl, NgForm } from '@angular/forms';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import {AuthService} from '../../shared/auth.service';
 
 @Component({
@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('token', JSON.stringify(token));
       localStorage.setItem('id',JSON.stringify(id));
       localStorage.setItem('role',role);
+      localStorage.setItem('username',res.username);
       this.authservice.authStatusListener.next(true);
       this.router.navigate(['/']);
     },err=>{

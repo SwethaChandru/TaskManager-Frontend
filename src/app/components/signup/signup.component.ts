@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { stringify } from 'querystring';
 import {AuthService} from '../../shared/auth.service';
 
 @Component({
@@ -13,6 +12,9 @@ export class SignupComponent implements OnInit {
 
   form:FormGroup;
   userId:string;
+  changeflag:boolean=false;
+  signupflag:boolean=false;
+  passflag:boolean=false;
   public mode="";
   userDetail;
   adminid;
@@ -29,6 +31,15 @@ export class SignupComponent implements OnInit {
       'password':new FormControl(null,{validators:[Validators.required]})
     })
     this.router.paramMap.subscribe((paramMap:ParamMap)=>{
+      if(paramMap.has('change'))
+      {
+        console.log(paramMap.get('change'));
+        this.changeflag=true;
+      }
+      else
+      {
+        this.signupflag=true;
+      }
       if(paramMap.has('userId'))
       {
         this.mode='edit'
@@ -93,5 +104,23 @@ export class SignupComponent implements OnInit {
     })
   }
 }
+
+onChangeForm(form:NgForm)
+{
+  let id=localStorage.getItem('id');
+  console.log(form.value);
+  let newpass={
+    id:JSON.parse(id),
+    old:form.value.old,
+    new:form.value.new
+  }
+  console.log(newpass);
+  this.authService.changepass(newpass).subscribe((res:any)=>{
+    console.log(res);
+    form.reset();
+  })
+}
+
+
 
 }

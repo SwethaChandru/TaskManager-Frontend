@@ -1,27 +1,27 @@
 <app-navbar></app-navbar>
-<div class="centre">
+<div class="header ">
     <h1>User Details</h1>
 </div>
-<div class="centre">
-        <tr>
+<div class="centre " >
+        <tr class="shadow p-3 mb-5 bg-white rounded " style="text-align: center;" >
             <th>S.NO</th>
-            <th>Name</th>
-            <th>User Name</th>
-            <th>email</th>
-            <th>ph num</th>
-            <th>role</th>
-            <th>edit</th>
-            <th>delete</th>
+            <th>NAME</th>
+            <th>USER NAME</th>
+            <th>EMAIL</th>
+            <th>PHONE NUM</th>
+            <th>ROLE</th>
+            <th>EDIT</th>
+            <th>DELETE</th>
         </tr>
-        <tr *ngFor="let user of userdetails;let i=index">
+        <tr *ngFor="let user of userdetails;let i=index" class="shadow p-3 mb-5 bg-white rounded">
             <td>{{i+1}}</td>
             <td>{{user.name}}</td>
             <td>{{user.username}}</td>
             <td>{{user.email}} </td>
             <td>{{user.phonenum}}</td>
             <td>{{user.role}}</td>
-            <td><button style="color: blue;" [routerLink]="['/edit',user._id]" >edit</button></td>
-            <td><button style="color: red;" (click)="delete(user._id)" >delete</button></td>
+            <td><button style="color: blue;" [routerLink]="['/edit',user._id]" ><i class="fa fa-pencil" aria-hidden="true"></i></button></td>
+            <td><button style="color: red;" (click)="delete(user._id)" ><i  class="fa fa-trash-o" aria-hidden="true"></i></button></td>
         </tr>
         
 </div>

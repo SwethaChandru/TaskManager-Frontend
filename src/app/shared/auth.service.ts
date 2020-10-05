@@ -41,4 +41,9 @@ updateuser(user)
 {
   return this.http.put("http://localhost:3000/user",user);
 }
+changepass(detail)
+{
+  return this.http.put("http://localhost:3000/user/change/",detail);
+}
+
 }

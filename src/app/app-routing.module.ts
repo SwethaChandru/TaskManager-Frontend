@@ -11,9 +11,11 @@ import { ViewComponent } from './components/view/view.component';
 const routes: Routes = [
   {path:'',component:NavbarComponent},
   {path:'login',component:LoginComponent},
+  {path:'editpass/:change',component:SignupComponent},
   {path:'signup',component:SignupComponent},
   {path:'edit/:userId',component:SignupComponent},
   {path:'addtask',component:AddTaskComponent},
+  {path:'editTask/:taskid',component:AddTaskComponent},
   {path:'view',component:ViewComponent},
   {path:'viewtask',component:ViewTaskComponent}
 ];
