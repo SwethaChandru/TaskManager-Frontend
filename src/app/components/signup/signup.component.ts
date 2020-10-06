@@ -1,3 +1,4 @@
+import { invalid } from '@angular/compiler/src/render3/view/util';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
@@ -18,6 +19,8 @@ export class SignupComponent implements OnInit {
   public mode="";
   userDetail;
   adminid;
+  editflag:boolean=false;
+  createflag:boolean=false;
 
   constructor(private authService:AuthService,private route:Router,public router:ActivatedRoute ) { }
 
@@ -42,7 +45,8 @@ export class SignupComponent implements OnInit {
       }
       if(paramMap.has('userId'))
       {
-        this.mode='edit'
+        this.mode='edit';
+        this.editflag=true;
         this.userId=paramMap.get('userId');
         console.log(this.userId);
         this.authService.getuserById(this.userId).subscribe((res:any)=>{
@@ -59,6 +63,7 @@ export class SignupComponent implements OnInit {
       }
       else
       {
+        this.createflag=true;
         this.mode='create';
         this.userId=null;
         console.log(this.mode);
@@ -67,6 +72,11 @@ export class SignupComponent implements OnInit {
   }
   onSignupForm()
   {
+    if(this.form.invalid)
+    {
+      alert("Fill alll the fields");
+      return;
+    }
     this.adminid=localStorage.getItem('id');
     if(this.mode==="create")
     {
@@ -107,6 +117,11 @@ export class SignupComponent implements OnInit {
 
 onChangeForm(form:NgForm)
 {
+  if(form.invalid)
+  {
+    alert("Fill all the fields");
+    return;
+  }
   let id=localStorage.getItem('id');
   console.log(form.value);
   let newpass={
@@ -118,6 +133,8 @@ onChangeForm(form:NgForm)
   this.authService.changepass(newpass).subscribe((res:any)=>{
     console.log(res);
     form.reset();
+  },err=>{
+    alert(err.error.message);
   })
 }
 

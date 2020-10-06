@@ -1,60 +1,86 @@
 <app-navbar></app-navbar>
+<a href="/view"><i class="fa fa-arrow-left" aria-hidden="true">Back</i></a>
 <div *ngIf="signupflag"  >
-    <h3 class="header mt-5">New User Registeration</h3>
+    <h3 *ngIf="createflag" class="header mt-5">New User Registeration</h3>
+    <h3 *ngIf="editflag" class="header mt-5">Update User</h3>
     <div class="center card shadow p-3 mb-5 bg-white rounded">
         <form [formGroup]="form"(submit)="onSignupForm()">
             <div >
-                <div >
+                <div [ngClass]="{'errorField' : form.get('name').errors && (form.get('name').touched || form.get('name').dirty)}" >
                     <label>Name</label>
                     <input type="text" name="name" formControlName="name" required>
                 </div>
+                <span *ngIf="form.get('name').errors && (form.get('name').touched || form.get('name').dirty)">
+                    <span style="color:red;">*Name is mandatory</span>
+                </span>
 
-                <div >
+                <div [ngClass]="{'errorField' : form.get('role').errors && (form.get('role').touched || form.get('role').dirty)}">
                     <label for="cars">Choose a role:</label>
                     <select name="cars" id="cars" style="padding: 8px;" formControlName="role">
                         <option value="admin">Admin</option>
                         <option value="user">User</option> 
                     </select>
                 </div>
+                <span *ngIf="form.get('role').errors && (form.get('role').touched || form.get('role').dirty)">
+                    <span style="color:red;">*Role is mandatory</span>
+                </span>
 
-                <div >
+                <div [ngClass]="{'errorField' : form.get('email').errors && (form.get('email').touched || form.get('email').dirty)}">
                     <label>Email</label>
                     <input type="email" name="email" formControlName="email" required>
                 </div>
+                <span *ngIf="form.get('email').errors && (form.get('email').touched || form.get('email').dirty)">
+                    <span style="color:red;">*Email is mandatory</span>
+                </span>
 
-                <div >
+                <div [ngClass]="{'errorField' : form.get('username').errors && (form.get('username').touched || form.get('username').dirty)}">
                     <label>User Name</label>
                     <input type="text" name="username" formControlName="username" required>
                 </div>
+                <span *ngIf="form.get('username').errors && (form.get('username').touched || form.get('username').dirty)">
+                    <span style="color:red;">*username is mandatory</span>
+                </span>
 
-                <div >
+                <div [ngClass]="{'errorField' : form.get('phonenum').errors && (form.get('phonenum').touched || form.get('phonenum').dirty)}" >
                     <label>Phone Num</label>
                     <input type="tel" name="phno" formControlName="phonenum" required>
                 </div>
-                <div >
+                <span *ngIf="form.get('phonenum').errors && (form.get('phonenum').touched || form.get('phonenum').dirty)">
+                    <span style="color:red;">*Phone Number is mandatory</span>
+                </span>
+
+                <div [ngClass]="{'errorField' : form.get('password').errors && (form.get('password').touched || form.get('password').dirty)}">
                     <label>Password</label>
-                    <input type="password" name="password" formControlName="password" required>
+                    <input type="password" name="password"  formControlName="password" required>
                   </div>
+                  <span *ngIf="form.get('password').errors && (form.get('password').touched || form.get('password').dirty)">
+                    <span style="color:red;">*Password is mandatory</span>
+                </span>
            
             </div>
-            <button  type="submit">Register</button>
+            <button *ngIf="createflag" type="submit">Register</button>
+            <button *ngIf="editflag" type="submit">Update</button>
         </form>
     </div>
 </div>
 
-<div *ngIf="changeflag" class="container" >
-    <h3 class="header">Change Password</h3>
-    <div class="center">
+<div *ngIf="changeflag" class="card cen shadow p-3 mb-5 bg-white rounded" >
+    <h3 class="head">change password</h3>
         <form #changeForm="ngForm" (submit)="onChangeForm(changeForm)">
             <div class="inlinestyle">
             <label>Old Password</label>
-            <input type="password" name="old"  ngModel required >
+            <input type="password" style="line-height: 35px;" name="old" #old="ngModel"  ngModel required >
+            <div *ngIf="old.invalid && (old.dirty || old.touched)" style="color: red;">
+                <div *ngIf="old.errors.required">*field is required</div>
+            </div>
             <label>New Password</label>
-            <input type="password" name="new" ngModel required >
+            <input type="password" style="line-height: 35px;" name="new" #new="ngModel" ngModel required >
+            <div *ngIf="new.invalid && (new.dirty || new.touched)" style="color: red;">
+                <div *ngIf="new.errors.required">*field is required</div>
+            </div>
             </div>
             
-            <button class="btn btn-primary" type="submit">Reset</button>
+            <button class="btn" type="submit">Reset</button>
         </form>
-    </div>
 </div>
 

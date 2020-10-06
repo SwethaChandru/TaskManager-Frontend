@@ -3,14 +3,15 @@
       <i class="fa fa-user-circle fa-5x" aria-hidden="true"></i>
     </div>
     <div style="margin-top: 30px;">
+    <a *ngIf="isadmin||isuser" href="/profile"><i class="fa fa-users" aria-hidden="true"></i><span class="space">My Profile</span></a>
     <a *ngIf="isadmin" href="/signup"><i class="fa fa-user-plus" aria-hidden="true"></i><span class="space">Add user</span></a>
-    <a *ngIf="isadmin" href="/view"><i class="fa fa-user-plus" aria-hidden="true"></i><span class="space">View User</span></a>
+    <a *ngIf="isadmin" href="/view"><i class="fa fa-eye" aria-hidden="true"></i><span class="space">View User</span></a>
     <a *ngIf="isadmin" href="/addtask"><i class="fa fa-fw fa-wrench"></i><span class="space">Assign tasks</span></a>
-    <a *ngIf="isadmin" href="/viewtask"><i class="fa fa-fw fa-user"></i><span class="space">Tasks</span></a>
+    <a *ngIf="isadmin" href="/viewtask"><i class="fa fa-tasks" aria-hidden="true"></i><span class="space">Tasks</span></a>
     <a *ngIf="isadmin" href="#contact"><i class="fa fa-fw fa-envelope"></i><span class="space">Completed</span></a>
     <a *ngIf="isadmin" href="#contact"><i class="fa fa-fw fa-envelope"></i><span class="space">Delayed</span></a>
-    <a *ngIf="isuser" href="/viewtask" ><i class="fa fa-sign-out" aria-hidden="true"></i><span class="space">View Task</span></a>
-    <a *ngIf="isuser" [routerLink]="['/editpass','Change']"><i class="fa fa-sign-out"></i><span class="space">Change Password</span></a>
+    <a *ngIf="isuser" href="/viewtask" ><i class="fa fa-eye" aria-hidden="true"></i><span class="space">View Task</span></a>
+    <a *ngIf="isuser" [routerLink]="['/editpass','Change']"><i class="fa fa-unlock" aria-hidden="true"></i><span class="space">Change Password</span></a>
     <a *ngIf="isadmin||isuser" href="/login" (click)="logout()"><i class="fa fa-sign-out" aria-hidden="true"></i><span class="space">Logout</span></a>
     </div>
   </div>

@@ -40,3 +40,42 @@ button
     color: white;
     background-color:rgb(12, 209, 166);
 }
+
+.head
+{
+    text-align:center;
+}
+.cen 
+{
+    margin: 220px 650px;
+    width: 30%;
+    box-shadow: wheat;
+    padding: 30px;
+    background-color: ghostwhite;
+    height: 40%;
+}
+.inlinestyle
+{
+    letter-spacing: 1px;
+    font-size: large;
+    width: 100%;
+    line-height: 35px;
+    font-size: large;
+}
+.btn
+{
+    background-color:rgb(12, 209, 166);
+    margin-top: 45px;
+    border-style: none;
+    margin-left: 190px;
+    border-radius: 15px;
+    width: 20%;
+    height: 17%;
+    justify-content: center;
+    font-size: large;
+}
+
+a{
+    margin-left: 300px;
+    font-size: x-large;
+}

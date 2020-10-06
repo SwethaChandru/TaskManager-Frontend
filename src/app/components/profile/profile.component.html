@@ -1,0 +1,19 @@
+<app-navbar></app-navbar>
+<h3 class="header">Profile Details</h3>
+<div *ngIf="flag" class="card center shadow p-3 mb-5 bg-white rounded" >
+    <div class=" row">
+        <div class="col-md-6">
+           <p>Name</p>
+           <p>Email</p>
+           <p>Phone Number</p>
+           <p>Username</p>
+        </div>
+        <div class="col-md-6">
+          <p>{{profile.name}}</p>
+          <p>{{profile.email}}</p>
+          <p>{{profile.phonenum}}</p>
+          <p>{{profile.username}}</p>
+       </div>
+      </div>
+      
+</div>

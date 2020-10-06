@@ -23,6 +23,11 @@ export class LoginComponent implements OnInit {
 
   onLoginForm()
   {
+    if(this.form.invalid)
+    {
+      alert("fill all the fields");
+      return
+    }
     console.log(this.form.value);
     let newUser={
       username:this.form.value.username,

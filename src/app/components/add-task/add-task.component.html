@@ -4,37 +4,54 @@
     <div class="center ">
         <form [formGroup]="form"(submit)="onAddTask()">
             <div>
-                    <div >
+                    <div [ngClass]="{'errorField' : form.get('title').errors && (form.get('title').touched || form.get('title').dirty)}">
                         <label>Task Title</label>
                         <input type="text" name="text" placeholder="Task Name"  required formControlName="title">
                     </div>
+                    <span *ngIf="form.get('title').errors && (form.get('title').touched || form.get('title').dirty)">
+                        <span style="color:red;">*Title is mandatory</span>
+                    </span>
 
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-6" [ngClass]="{'errorField' : form.get('date').errors && (form.get('date').touched || form.get('date').dirty)}">
                             <label>Date</label>
                             <input type="date" name="text" required formControlName="date">
                         </div>
-                        <div class="col-md-6">
+                        <span *ngIf="form.get('date').errors && (form.get('date').touched || form.get('date').dirty)">
+                            <span style="color:red;">*Date is mandatory</span>
+                        </span>
+
+                        <div class="col-md-6" [ngClass]="{'errorField' : form.get('user').errors && (form.get('user').touched || form.get('user').dirty)}">
                             <label for="cars">Choose a role</label>
                             <select  name="cars" id="cars" style="padding: 5px;"  formControlName="user">
                                 <option *ngFor="let user of userdetails" value={{user.username}}>{{user.username}}</option>  
                             </select>
                         </div>
+                        <span *ngIf="form.get('user').errors && (form.get('user').touched || form.get('user').dirty)">
+                            <span style="color:red;">*User is mandatory</span>
+                        </span>
+
                     </div>
-                <div >
+                <div [ngClass]="{'errorField' : form.get('description').errors && (form.get('description').touched || form.get('description').dirty)}">
                     <label>Description</label>
                     <textarea rows="5" formControlName="description" placeholder="Describe it .."></textarea>
                 </div>
+                <span *ngIf="form.get('description').errors && (form.get('description').touched || form.get('description').dirty)">
+                    <span style="color:red;">*Description is mandatory</span>
+                </span>
 
-                <div >
+                <div [ngClass]="{'errorField' : form.get('comments').errors && (form.get('comments').touched || form.get('comments').dirty)}">
                     <label>Comments</label>
                     <textarea rows="5" formControlName="comments" placeholder="Add Comments"></textarea>
                 </div>
+                <span *ngIf="form.get('comments').errors && (form.get('comments').touched || form.get('comments').dirty)">
+                    <span style="color:red;">*Comments is mandatory</span>
+                </span>
 
             </div>
             <div>
-            <button class="btn btn-primary" type="submit">cancel</button>
-            <button class="btn btn-primary" type="submit">create</button>
+            <button class="btn btn-primary" type="submit" >create</button>
+            <button class="btn btn-primary" routerLink="/addtask" >reset</button>
             </div>
             
         </form>

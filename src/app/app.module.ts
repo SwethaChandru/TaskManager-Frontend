@@ -14,7 +14,7 @@ import {MatInputModule} from '@angular/material/input';
 @NgModule({
   declarations: [
     AppComponent,
-    routingComponent,
+    routingComponent
   ],
   imports: [
     BrowserModule,FormsModule,ReactiveFormsModule,HttpClientModule,MatNativeDateModule,

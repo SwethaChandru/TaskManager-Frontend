@@ -31,7 +31,13 @@ export class AddTaskComponent implements OnInit {
     })
     this.authservice.getuser(JSON.parse(this.adminid)).subscribe((res:any)=>{
       console.log(res);
-      this.userdetails=res;
+      for(let i=0;i<res.length;i++)
+      {
+        if(res[i].role=="user")
+        {
+          this.userdetails.push(res[i]);
+        }
+      }
     })
     this.router.paramMap.subscribe((paramMap:ParamMap)=>{
         if(paramMap.has('taskid'))
@@ -71,6 +77,12 @@ export class AddTaskComponent implements OnInit {
 
   onAddTask()
   {
+    console.log(this.form.value);
+    if(this.form.invalid)
+    {
+      alert("Fill all the fields");
+      return;
+    }
     if(this.mode==="create")
     {
       console.log(this.form.value);
@@ -102,5 +114,9 @@ export class AddTaskComponent implements OnInit {
       this.route.navigate(['/viewtask']);
     })
   }
+}
+reset()
+{
+  this.form.reset();
 }
 }

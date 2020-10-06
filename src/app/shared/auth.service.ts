@@ -45,5 +45,9 @@ changepass(detail)
 {
   return this.http.put("http://localhost:3000/user/change/",detail);
 }
+profile(id)
+{
+  return this.http.get("http://localhost:3000/user/profile/"+id);
+}
 
 }

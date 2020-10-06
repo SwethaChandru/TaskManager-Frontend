@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { stringify } from 'querystring';
 import {TaskService} from '../../shared/task.service';
 
 @Component({
@@ -18,6 +19,9 @@ export class ViewTaskComponent implements OnInit {
   flag:boolean=false;
   isuser:boolean=localStorage.getItem('role')=="user"?true:false;
   isadmin:boolean=localStorage.getItem('role')=="admin"?true:false;
+  username:string;
+  date=" ";
+  value=" ";
 
   constructor(private taskservice:TaskService,private router:Router) { }
 
@@ -37,13 +41,16 @@ export class ViewTaskComponent implements OnInit {
     {
       this.taskservice.getTaskByUser(localStorage.getItem('username')).subscribe((res:any)=>{
         this.taskDetails=res;
+        console.log(res);
       })
     }
   }
   DetailedView(task)
   {
     console.log(task);
+    var date=new Date(task.date);
     this.singleTask=task;
+    this.singleTask.date=date.toDateString();
     this.flag=true;
   }
   delete(id)
@@ -55,6 +62,7 @@ export class ViewTaskComponent implements OnInit {
 
   taskbyDate(value)
   {
+    this.date=value;
     if(this.isadmin)
     {
       this.taskservice.getTaskByDate(value,JSON.parse(this.adminid)).subscribe((res:any)=>{
@@ -65,6 +73,7 @@ export class ViewTaskComponent implements OnInit {
     if(this.isuser)
     {
       this.taskservice.userTaskByDate(value,localStorage.getItem('username')).subscribe((res:any)=>{
+        console.log(res);
         this.taskDetails=res;
       })
     }
@@ -108,5 +117,14 @@ export class ViewTaskComponent implements OnInit {
         window.location.reload();
       })
     }
+  }
+  filter(val)
+  {
+    this.value=val;
+    console.log(this.date);
+    console.log(this.value);
+    this.taskservice.filter(this.date,this.value,JSON.parse(this.adminid)).subscribe((res:any)=>{
+      console.log(res);
+    })
   }
 }

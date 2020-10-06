@@ -48,4 +48,9 @@ export class TaskService {
   {
     return this.http.put("http://localhost:3000/task/updatestatus/",detail);
   }
+  filter(date,value,id)
+  {
+    return this.http.get("http://localhost:3000/task/filter/"+date+"/"+value+"/"+id);
+  }
 }
+
