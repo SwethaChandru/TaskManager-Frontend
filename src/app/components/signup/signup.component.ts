@@ -87,7 +87,7 @@ export class SignupComponent implements OnInit {
       role:this.form.value.role,
       phonenum:this.form.value.phonenum,
       email:this.form.value.email,
-      name:this.form.value.email,
+      name:this.form.value.name,
       adminId:JSON.parse(this.adminid)
     }
     this.authService.signup(user).subscribe((res:any)=>{

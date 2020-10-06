@@ -45,4 +45,14 @@ input{
   letter-spacing: 0.5px;
   margin-left: 350px;
 }
-
+select{
+  width: 100%; 
+  padding: 12px;
+  margin-top: 10px;
+}
+.head
+{
+  margin-top: 25px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}

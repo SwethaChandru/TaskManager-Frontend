@@ -21,7 +21,7 @@ export class ViewTaskComponent implements OnInit {
   isadmin:boolean=localStorage.getItem('role')=="admin"?true:false;
   username:string;
   date=" ";
-  value=" ";
+  value="all";
 
   constructor(private taskservice:TaskService,private router:Router) { }
 
@@ -65,18 +65,32 @@ export class ViewTaskComponent implements OnInit {
     this.date=value;
     if(this.isadmin)
     {
-      this.taskservice.getTaskByDate(value,JSON.parse(this.adminid)).subscribe((res:any)=>{
+      this.taskservice.filter(this.date,this.value,JSON.parse(this.adminid)).subscribe((res:any)=>{
         console.log(res);
         this.taskDetails=res;
       })
     }
     if(this.isuser)
     {
-      this.taskservice.userTaskByDate(value,localStorage.getItem('username')).subscribe((res:any)=>{
+      this.taskservice.filterUser(this.date,this.value,localStorage.getItem('username')).subscribe((res:any)=>{
         console.log(res);
         this.taskDetails=res;
       })
     }
+    // if(this.isadmin)
+    // {
+    //   this.taskservice.getTaskByDate(value,JSON.parse(this.adminid)).subscribe((res:any)=>{
+    //     console.log(res);
+    //     this.taskDetails=res;
+    //   })
+    // }
+    // if(this.isuser)
+    // {
+    //   this.taskservice.userTaskByDate(value,localStorage.getItem('username')).subscribe((res:any)=>{
+    //     console.log(res);
+    //     this.taskDetails=res;
+    //   })
+    // }
     
   }
 
@@ -123,8 +137,19 @@ export class ViewTaskComponent implements OnInit {
     this.value=val;
     console.log(this.date);
     console.log(this.value);
-    this.taskservice.filter(this.date,this.value,JSON.parse(this.adminid)).subscribe((res:any)=>{
-      console.log(res);
-    })
+    if(this.isadmin)
+    {
+      this.taskservice.filter(this.date,this.value,JSON.parse(this.adminid)).subscribe((res:any)=>{
+        console.log(res);
+        this.taskDetails=res;
+      })
+    }
+    if(this.isuser)
+    {
+      this.taskservice.filterUser(this.date,this.value,localStorage.getItem('username')).subscribe((res:any)=>{
+        console.log(res);
+        this.taskDetails=res;
+      })
+    }
   }
 }

@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('role',role);
       localStorage.setItem('username',res.username);
       this.authservice.authStatusListener.next(true);
-      this.router.navigate(['/']);
+      this.router.navigate(['/profile']);
     },err=>{
       alert(err.error.message);
     })

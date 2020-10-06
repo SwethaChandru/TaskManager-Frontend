@@ -52,5 +52,9 @@ export class TaskService {
   {
     return this.http.get("http://localhost:3000/task/filter/"+date+"/"+value+"/"+id);
   }
+  filterUser(date,value,uname)
+  {
+    return this.http.get("http://localhost:3000/task/filteruser/"+date+"/"+value+"/"+uname);
+  }
 }
 

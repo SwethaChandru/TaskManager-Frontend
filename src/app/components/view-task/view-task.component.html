@@ -1,13 +1,16 @@
 <app-navbar></app-navbar>
 <div class="centre row" >
-  <div style="margin-top: 10px; " class="col-md-6" >
+  <div class="col-md-5">
+    <h5 class="head">filter by date and status</h5>
+  </div>
+  <div style="margin-top: 10px; " class="col-md-3" >
     <input  type="date" style="width: 100%;" (change)="taskbyDate(input.value)" value="" #input>
   </div>
-  <div class="col-md-6">
+  <div class="col-md-3">
     <!-- <label for="cars">Choose a car:</label>  -->
-    <select name="cars" id="cars" (change)="filter(inp.value)" #inp>
-      <option>--select--</option>
+    <select name="cars" id="cars" (change)="filter(inp.value)" #inp  >
       <option value="all" >All</option>
+      <option value="pending">Pending</option>
       <option value="completed">Completed</option>
       <option value="delayed">delayed</option>
     </select>
