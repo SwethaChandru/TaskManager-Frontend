@@ -10,43 +10,35 @@ export class TaskService {
 
   addtask(task)
   {
-    return this.http.post("http://localhost:3000/task/addtask",task);
+    return this.http.post("https://taskmgr-app-backend.herokuapp.com/task/addtask",task);
   }
   getTaskByAdmin(id)
   {
-    return this.http.get("http://localhost:3000/task/"+id);
+    return this.http.get("https://taskmgr-app-backend.herokuapp.com/task/"+id);
   }
   getTaskByUser(username)
   {
-    return this.http.get("http://localhost:3000/task/usertask/"+username);
+    return this.http.get("https://taskmgr-app-backend.herokuapp.com/task/usertask/"+username);
   }
   deleteTask(id)
   {
-    return this.http.delete("http://localhost:3000/task/delete/"+id);
+    return this.http.delete("https://taskmgr-app-backend.herokuapp.com/task/delete/"+id);
   }
   getTaskForEdit(id)
   {
-    return this.http.get("http://localhost:3000/task/edit/"+id);
+    return this.http.get("https://taskmgr-app-backend.herokuapp.com/task/edit/"+id);
   }
   updateTask(task)
   {
-    return this.http.put("http://localhost:3000/task/update",task)
+    return this.http.put("https://taskmgr-app-backend.herokuapp.com/task/update",task)
   }
   updateComplete(detail)
   {
-    return this.http.put("http://localhost:3000/task/",detail)
+    return this.http.put("https://taskmgr-app-backend.herokuapp.com/task/",detail)
   }
   updateDelayStatus(detail)
   {
-    return this.http.put("http://localhost:3000/task/updatestatus/",detail);
+    return this.http.put("https://taskmgr-app-backend.herokuapp.com/task/updatestatus/",detail);
   }
-  // filter(date,value,id)
-  // {
-  //   return this.http.get("http://localhost:3000/task/filter/"+date+"/"+value+"/"+id);
-  // }
-  // filterUser(date,value,uname)
-  // {
-  //   return this.http.get("http://localhost:3000/task/filteruser/"+date+"/"+value+"/"+uname);
-  // }
 }
 

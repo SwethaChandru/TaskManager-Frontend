@@ -19,35 +19,35 @@ getAuthStatusListener()
 
 login(user)
 {
-  return this.http.post("http://localhost:3000/user/login",user);
+  return this.http.post("https://taskmgr-app-backend.herokuapp.com/user/login",user);
 }
 signup(user)
 {
-  return this.http.post("http://localhost:3000/user/signup",user);
+  return this.http.post("https://taskmgr-app-backend.herokuapp.com/user/signup",user);
 }
 getuser(id)
 {
-  return this.http.get("http://localhost:3000/user/getuser/"+id);
+  return this.http.get("https://taskmgr-app-backend.herokuapp.com/user/getuser/"+id);
 }
 getuserById(id)
 {
-  return this.http.get("http://localhost:3000/user/"+id);
+  return this.http.get("https://taskmgr-app-backend.herokuapp.com/user/"+id);
 }
 deleteuser(id)
 {
-  return this.http.delete("http://localhost:3000/user/"+id);
+  return this.http.delete("https://taskmgr-app-backend.herokuapp.com/user/"+id);
 }
 updateuser(user)
 {
-  return this.http.put("http://localhost:3000/user",user);
+  return this.http.put("https://taskmgr-app-backend.herokuapp.com/user",user);
 }
 changepass(detail)
 {
-  return this.http.put("http://localhost:3000/user/change/",detail);
+  return this.http.put("https://taskmgr-app-backend.herokuapp.com/user/change/",detail);
 }
 profile(id)
 {
-  return this.http.get("http://localhost:3000/user/profile/"+id);
+  return this.http.get("https://taskmgr-app-backend.herokuapp.com/user/profile/"+id);
 }
 
 }
