@@ -16,6 +16,7 @@ export class AddTaskComponent implements OnInit {
   form:FormGroup
   mode="";
   taskid:string;
+  status:string;
 
   constructor(private authservice:AuthService,private taskservice:TaskService,
     public router:ActivatedRoute,public route:Router) { }
@@ -45,9 +46,9 @@ export class AddTaskComponent implements OnInit {
           this.mode='edit'
           this.taskid=paramMap.get('taskid');
           console.log(this.taskid);
-  
           this.taskservice.getTaskForEdit(this.taskid).subscribe((res:any)=>{
             console.log(res);
+            this.status=res.status;
             console.log(res.date);
             this.form.patchValue({title: res.title });
             this.form.patchValue({date: this.formatDate(new Date(res.date))});
@@ -108,7 +109,8 @@ export class AddTaskComponent implements OnInit {
       userAssigned:this.form.value.user,
       date:this.form.value.date,
       comment:this.form.value.comments,
-      adminid:JSON.parse(this.adminid)
+      adminid:JSON.parse(this.adminid),
+      status:this.status
     }
     this.taskservice.updateTask(Task).subscribe((res:any)=>{
       this.route.navigate(['/viewtask']);

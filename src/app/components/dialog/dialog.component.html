@@ -1,0 +1,43 @@
+<h2 mat-dialog-title>{{data.title}}</h2>    
+    <mat-dialog-content width:300px>
+        <div class="row" style="letter-spacing: 0.5px; font-size: large;">
+            <div class="col-md-6">
+               <p>User Assigned</p>
+               <p>Description</p>
+               <p>Comment</p>
+               <p>Due Date</p>
+               <p *ngIf="isuser">Assigned by</p>
+               <p *ngIf="data.status==='delayed'">Reason</p>
+               <p>status</p>
+            </div>
+            <div class="col-md-6">
+              <p>{{data.user}}</p>
+              <p>{{data.desc}}</p>
+              <p>{{data.comments}}</p>
+              <p>{{data.date}}</p>
+              <p *ngIf="isuser">{{data.assignBy}}</p>
+              <p *ngIf="data.status==='delayed'">{{data.reason}}</p>
+              <p *ngIf="data.status!=='pending' && isuser">{{data.status}}</p>
+              <p *ngIf="isadmin">{{data.status}}</p>
+              <p class="row" *ngIf="data.status==='pending' && isuser">
+                <mat-radio-group class="text-left">
+                    <div class="form-group">
+                       <mat-radio-button class="ft-12" *ngFor="let item of itemsList; let i = index;" value="{{item.name}}" (change)="onItemChange(item.name)">
+                             {{item.name}}
+                      <input type="text" value="" (change)="store(in.value)" *ngIf="isVisible == i" class="form-control"  #in>
+                       </mat-radio-button>
+                    </div>
+               </mat-radio-group>
+            </p>
+           </div>
+           
+          </div>
+    </mat-dialog-content>
+    <hr>
+<mat-dialog-actions class="but">
+    <button class="admin" (click)="edit()" *ngIf="data.status!=='completed' && isadmin "  mat-dialog-close type="submit"  >Edit</button>
+    <button class="admin" *ngIf="isadmin" type="submit" (click)="delete()" mat-dialog-close  >delete</button>
+    <button  class="user" (click)="changestatus()" *ngIf="data.status==='pending' && isuser" type="submit"  mat-dialog-close  >submit</button>
+    <button  class="user && isadmin"  type="submit"  mat-dialog-close  >close</button>
+</mat-dialog-actions>
+

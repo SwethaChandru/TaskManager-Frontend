@@ -1,8 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { stringify } from 'querystring';
+import { MatDialog} from '@angular/material/dialog';
+import { Calendar, EventApi } from '@fullcalendar/core';
+import {  CalendarOptions } from '@fullcalendar/angular'
+import { DialogComponent } from '../dialog/dialog.component';
 import {TaskService} from '../../shared/task.service';
+import { noUndefined } from '@angular/compiler/src/util';
+import { BLACK_ON_WHITE_CSS_CLASS } from '@angular/cdk/a11y/high-contrast-mode/high-contrast-mode-detector';
+import { ArgumentOutOfRangeError } from 'rxjs';
+import { AriaDescriber } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'app-view-task',
@@ -10,146 +17,110 @@ import {TaskService} from '../../shared/task.service';
   styleUrls: ['./view-task.component.css']
 })
 export class ViewTaskComponent implements OnInit {
-
-  form:FormGroup;
+ee
+  showModal: boolean;
   taskDetails:Array<any>=[];
   adminid:string;
-  singleTask;
-  taskid:string;
-  flag:boolean=false;
+  calendarOptions:CalendarOptions ;
   isuser:boolean=localStorage.getItem('role')=="user"?true:false;
   isadmin:boolean=localStorage.getItem('role')=="admin"?true:false;
-  username:string;
-  date=" ";
-  value="all";
 
-  constructor(private taskservice:TaskService,private router:Router) { }
+  constructor(private taskservice:TaskService,public dialog: MatDialog) {   }
 
   ngOnInit(): void {
     this.adminid=localStorage.getItem('id');
-    this.form=new FormGroup({
-      'reason':new FormControl(null,{validators:[Validators.required]}),
-    })
     if(this.isadmin)
     {
       this.taskservice.getTaskByAdmin(JSON.parse(this.adminid)).subscribe((res:any)=>{
-        console.log(res);
+        console.log(res[0]);
         this.taskDetails=res;
-      })
+        this.call();
+        console.log(this.taskDetails);
+      })  
     }
     if(this.isuser)
     {
       this.taskservice.getTaskByUser(localStorage.getItem('username')).subscribe((res:any)=>{
         this.taskDetails=res;
         console.log(res);
+        this.call();
       })
     }
-  }
-  DetailedView(task)
-  {
-    console.log(task);
-    var date=new Date(task.date);
-    this.singleTask=task;
-    this.singleTask.date=date.toDateString();
-    this.flag=true;
-  }
-  delete(id)
-  {
-    this.taskservice.deleteTask(id).subscribe((res:any)=>{
-      window.location.reload();
-    })
-  }
-
-  taskbyDate(value)
-  {
-    this.date=value;
-    if(this.isadmin)
-    {
-      this.taskservice.filter(this.date,this.value,JSON.parse(this.adminid)).subscribe((res:any)=>{
-        console.log(res);
-        this.taskDetails=res;
-      })
-    }
-    if(this.isuser)
-    {
-      this.taskservice.filterUser(this.date,this.value,localStorage.getItem('username')).subscribe((res:any)=>{
-        console.log(res);
-        this.taskDetails=res;
-      })
-    }
-    // if(this.isadmin)
-    // {
-    //   this.taskservice.getTaskByDate(value,JSON.parse(this.adminid)).subscribe((res:any)=>{
-    //     console.log(res);
-    //     this.taskDetails=res;
-    //   })
-    // }
-    // if(this.isuser)
-    // {
-    //   this.taskservice.userTaskByDate(value,localStorage.getItem('username')).subscribe((res:any)=>{
-    //     console.log(res);
-    //     this.taskDetails=res;
-    //   })
-    // }
     
   }
 
-  storeid(id)
+  call()
   {
-    console.log(id);
-    this.taskid=id;
-  }
-  changestatus(status,id)
-  {
-    console.log(this.form.value);
-    console.log(status);
-    console.log(id);
-    
-    if(status==="delayed")
-    {
-      let detail={
-        status:status,
-        id:this.taskid,
-        reason:this.form.value.reason
+    for(let i=0;i<this.taskDetails.length;i++)
+      {
+        if(this.taskDetails[i].status=="pending")
+        {
+          let color="purple";
+          this.taskDetails[i].color=color;
+        }
+        if(this.taskDetails[i].status=="completed")
+        {
+          let color="green";
+          this.taskDetails[i].color=color;
+        }
+        if(this.taskDetails[i].status=="delayed")
+        {
+          let color="red";
+          this.taskDetails[i].color=color;
+        }
+        var d = new Date(this.taskDetails[i].date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+        if (month.length < 2) 
+        month = '0' + month;
+        if (day.length < 2) 
+        day = '0' + day;
+        this.taskDetails[i].date=[year, month, day].join('-');
       }
-      this.taskservice.updateDelayStatus(detail).subscribe((res:any)=>{
-        console.log(res);
-        window.location.reload();
-      },err=>{
-        alert(err.error.message);
-      })
-    }
-    
-    if(status=="completed")
-    {
-      let detail={
-        status:status,
-        id:id
-      }
-      this.taskservice.updateComplete(detail).subscribe((res:any)=>{
-        console.log(res);
-        window.location.reload();
-      })
-    }
+      console.log(this.taskDetails[0].title);
+      this.calendarOptions= {
+        initialView: 'dayGridMonth',
+        displayEventTime: false,
+        dateClick: this.handleDateClick.bind(this), // bind is important!
+        eventClick: this.handleEventClick.bind(this),
+        events: this.taskDetails ,
+      };
   }
-  filter(val)
-  {
-    this.value=val;
-    console.log(this.date);
-    console.log(this.value);
-    if(this.isadmin)
-    {
-      this.taskservice.filter(this.date,this.value,JSON.parse(this.adminid)).subscribe((res:any)=>{
-        console.log(res);
-        this.taskDetails=res;
-      })
+  handleDateClick(arg) {
+    alert('date click! ' + arg.dateStr)
+  }
+
+  handleEventClick(arg) {
+    console.log(arg.event);
+    var d=new Date(arg.event.start);
+    let details={
+      title:arg.event.title,
+      date:d.toDateString(),
+      id:arg.event.extendedProps._id,
+      status:arg.event.extendedProps.status,
+      desc:arg.event.extendedProps.description,
+      user:arg.event.extendedProps.userAssigned,
+      comments:arg.event.extendedProps.comments,
+      reason:arg.event.extendedProps.reason,
+      assignBy:null
     }
     if(this.isuser)
     {
-      this.taskservice.filterUser(this.date,this.value,localStorage.getItem('username')).subscribe((res:any)=>{
-        console.log(res);
-        this.taskDetails=res;
-      })
+      // console.log(arg.event.extendedProps.products.username);
+      details.assignBy=arg.event.extendedProps.products.username
     }
+    let dialogRef = this.dialog.open(DialogComponent,{
+      data:details,
+      height: '470px',
+      width: '700px'
+    });
   }
-}
+
+    // openDialog() {
+    //   let dialogRef = this.dialog.open(DialogComponent,{data:{name:'swetha'}});
+    // }
+ 
+    
+  }
+  

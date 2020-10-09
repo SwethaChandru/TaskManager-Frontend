@@ -10,6 +10,7 @@ import { ViewComponent } from './components/view/view.component';
 import { AuthGuardService } from './shared/auth-guard.service';
 import {AdminGuardService} from './shared/admin-guard.service';
 import {SharedAuthService} from './shared/shared-auth.service';
+import { DialogComponent } from './components/dialog/dialog.component';
 
 
 const routes: Routes = [
@@ -33,4 +34,4 @@ const routes: Routes = [
 export class AppRoutingModule { }
 
 export const routingComponent=[LoginComponent,SignupComponent,NavbarComponent,AddTaskComponent,
-                                ViewComponent,ViewTaskComponent,ProfileComponent]
+                                ViewComponent,ViewTaskComponent,ProfileComponent,DialogComponent]

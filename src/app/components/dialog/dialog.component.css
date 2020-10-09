@@ -1,0 +1,26 @@
+.but
+{
+    float: right;
+}
+.admin
+{
+    background-color:rgb(12, 209, 166);
+    border-style: none;
+    margin-left: 5px;
+    width: 80px;
+    height:30px;
+    border-radius: 15px;
+    font-size: large;
+    letter-spacing: 0.5px;
+}
+.user
+{
+    background-color:rgb(12, 209, 166);
+    border-style: none;
+    margin-left: 5px;
+    width: 110px;
+    height:30px;
+    border-radius: 15px;
+    font-size: large;
+    letter-spacing: 0.5px;
+}

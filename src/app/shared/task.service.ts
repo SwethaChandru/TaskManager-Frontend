@@ -20,14 +20,6 @@ export class TaskService {
   {
     return this.http.get("http://localhost:3000/task/usertask/"+username);
   }
-  getTaskByDate(date,id)
-  {
-    return this.http.get("http://localhost:3000/task/"+date+"/"+id);
-  }
-  userTaskByDate(date,username)
-  {
-    return this.http.get("http://localhost:3000/task/user/"+date+"/"+username)
-  }
   deleteTask(id)
   {
     return this.http.delete("http://localhost:3000/task/delete/"+id);
@@ -48,13 +40,13 @@ export class TaskService {
   {
     return this.http.put("http://localhost:3000/task/updatestatus/",detail);
   }
-  filter(date,value,id)
-  {
-    return this.http.get("http://localhost:3000/task/filter/"+date+"/"+value+"/"+id);
-  }
-  filterUser(date,value,uname)
-  {
-    return this.http.get("http://localhost:3000/task/filteruser/"+date+"/"+value+"/"+uname);
-  }
+  // filter(date,value,id)
+  // {
+  //   return this.http.get("http://localhost:3000/task/filter/"+date+"/"+value+"/"+id);
+  // }
+  // filterUser(date,value,uname)
+  // {
+  //   return this.http.get("http://localhost:3000/task/filteruser/"+date+"/"+value+"/"+uname);
+  // }
 }
 

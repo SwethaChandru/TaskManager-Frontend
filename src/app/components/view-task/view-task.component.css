@@ -1,4 +1,11 @@
-.centre
+full-calendar
+{
+  margin-left: 300px;
+  width: 80%;
+  height: 800px
+}
+
+/* .centre
 {
   margin: auto;
   width: 50%;
@@ -55,4 +62,4 @@ select{
   margin-top: 25px;
   letter-spacing: 1px;
   text-transform: uppercase;
-}
+} */
