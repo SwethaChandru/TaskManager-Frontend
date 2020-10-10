@@ -2,5 +2,17 @@ full-calendar
 {
   margin-left: 300px;
   width: 80%;
-  height: 800px
+  height: 700px
+}
+.dot {
+  height: 15px;
+  width: 15px;
+  /* background-color: #bbb; */
+  border-radius: 50%;
+  display: inline-block;
+}
+.lab
+{
+  margin-left: 10px;
+  margin-right: 10px;
 }

@@ -35,9 +35,9 @@
     </mat-dialog-content>
     <hr>
 <mat-dialog-actions class="but">
-    <button class="admin" (click)="edit()" *ngIf="data.status!=='completed' && isadmin "  mat-dialog-close type="submit"  >Edit</button>
+    <button  class="user && isadmin"  type="submit"  mat-dialog-close  >cancel</button>
+    <button class="admin" style="background-color: blue; color: white; width: 100px;" (click)="edit()" *ngIf="data.status!=='completed' && isadmin "  mat-dialog-close type="submit"  >Edit Details</button>
     <button class="admin" *ngIf="isadmin" type="submit" (click)="delete()" mat-dialog-close  >delete</button>
     <button  class="user" (click)="changestatus()" *ngIf="data.status==='pending' && isuser" type="submit"  mat-dialog-close  >submit</button>
-    <button  class="user && isadmin"  type="submit"  mat-dialog-close  >close</button>
 </mat-dialog-actions>
 
