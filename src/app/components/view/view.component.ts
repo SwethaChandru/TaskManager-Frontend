@@ -26,9 +26,7 @@ export class ViewComponent implements OnInit {
   {
     if(confirm("Are you sure to delete "))
     {
-      console.log(id);
       this.authService.deleteuser(id).subscribe((res:any)=>{
-      console.log(res);
       window.location.reload();
     })
     }    

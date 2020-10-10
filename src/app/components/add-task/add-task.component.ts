@@ -45,11 +45,8 @@ export class AddTaskComponent implements OnInit {
         {
           this.mode='edit'
           this.taskid=paramMap.get('taskid');
-          console.log(this.taskid);
           this.taskservice.getTaskForEdit(this.taskid).subscribe((res:any)=>{
-            console.log(res);
             this.status=res.status;
-            console.log(res.date);
             this.form.patchValue({title: res.title });
             this.form.patchValue({date: this.formatDate(new Date(res.date))});
             this.form.patchValue({description:res.description});
@@ -86,7 +83,6 @@ export class AddTaskComponent implements OnInit {
     }
     if(this.mode==="create")
     {
-      console.log(this.form.value);
       let newTask={
       title:this.form.value.title,
       description:this.form.value.description,
@@ -96,7 +92,6 @@ export class AddTaskComponent implements OnInit {
       adminid:JSON.parse(this.adminid)
     }
     this.taskservice.addtask(newTask).subscribe((res:any)=>{
-      console.log(res);
       window.location.reload();
     })
   }

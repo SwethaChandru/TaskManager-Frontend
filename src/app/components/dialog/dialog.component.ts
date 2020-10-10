@@ -51,7 +51,6 @@ export class DialogComponent implements OnInit {
     {
       this.isVisible=-1;
     }
-    // this.isVisible = i;
  }
   changestatus()
   {
@@ -72,7 +71,6 @@ export class DialogComponent implements OnInit {
         reason:this.reason
       }
       this.taskservice.updateDelayStatus(detail).subscribe((res:any)=>{
-        console.log(res);
         window.location.reload();
       },err=>{
         alert(err.error.message);

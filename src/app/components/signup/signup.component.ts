@@ -1,4 +1,3 @@
-import { invalid } from '@angular/compiler/src/render3/view/util';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
@@ -36,7 +35,6 @@ export class SignupComponent implements OnInit {
     this.router.paramMap.subscribe((paramMap:ParamMap)=>{
       if(paramMap.has('change'))
       {
-        console.log(paramMap.get('change'));
         this.changeflag=true;
       }
       else
@@ -48,11 +46,8 @@ export class SignupComponent implements OnInit {
         this.mode='edit';
         this.editflag=true;
         this.userId=paramMap.get('userId');
-        console.log(this.userId);
         this.authService.getuserById(this.userId).subscribe((res:any)=>{
-          console.log(res);
           this.userDetail=res;
-          console.log(this.userDetail);
           this.form.patchValue({username: this.userDetail.username });
           this.form.patchValue({ name: this.userDetail.name});
           this.form.patchValue({role:this.userDetail.role});
@@ -66,7 +61,6 @@ export class SignupComponent implements OnInit {
         this.createflag=true;
         this.mode='create';
         this.userId=null;
-        console.log(this.mode);
       }
     })
   }
@@ -80,7 +74,6 @@ export class SignupComponent implements OnInit {
     this.adminid=localStorage.getItem('id');
     if(this.mode==="create")
     {
-      console.log(this.form.value);
       let user={
       username:this.form.value.username,
       password:this.form.value.password,
@@ -91,7 +84,6 @@ export class SignupComponent implements OnInit {
       adminId:JSON.parse(this.adminid)
     }
     this.authService.signup(user).subscribe((res:any)=>{
-      console.log(res);
       window.location.reload();
     },err=>{
       alert(err.error.message);
@@ -109,7 +101,6 @@ export class SignupComponent implements OnInit {
       id:this.userId
     }
     this.authService.updateuser(user).subscribe((res:any)=>{
-      console.log(res);
       this.form.reset();                                                
     })
   }
@@ -123,7 +114,6 @@ onChangeForm(form:NgForm)
     return;
   }
   let id=localStorage.getItem('id');
-  console.log(form.value);
   let newpass={
     id:JSON.parse(id),
     old:form.value.old,
@@ -131,13 +121,9 @@ onChangeForm(form:NgForm)
   }
   console.log(newpass);
   this.authService.changepass(newpass).subscribe((res:any)=>{
-    console.log(res);
     form.reset();
   },err=>{
     alert(err.error.message);
   })
 }
-
-
-
 }

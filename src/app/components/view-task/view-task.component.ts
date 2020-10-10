@@ -1,15 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+
 import { MatDialog} from '@angular/material/dialog';
-import { Calendar, EventApi } from '@fullcalendar/core';
 import {  CalendarOptions } from '@fullcalendar/angular'
 import { DialogComponent } from '../dialog/dialog.component';
 import {TaskService} from '../../shared/task.service';
-import { noUndefined } from '@angular/compiler/src/util';
-import { BLACK_ON_WHITE_CSS_CLASS } from '@angular/cdk/a11y/high-contrast-mode/high-contrast-mode-detector';
-import { ArgumentOutOfRangeError } from 'rxjs';
-import { AriaDescriber } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'app-view-task',
@@ -17,7 +11,6 @@ import { AriaDescriber } from '@angular/cdk/a11y';
   styleUrls: ['./view-task.component.css']
 })
 export class ViewTaskComponent implements OnInit {
-ee
   showModal: boolean;
   taskDetails:Array<any>=[];
   adminid:string;
@@ -82,7 +75,7 @@ ee
       this.calendarOptions= {
         initialView: 'dayGridMonth',
         displayEventTime: false,
-        dateClick: this.handleDateClick.bind(this), // bind is important!
+        dateClick: this.handleDateClick.bind(this),
         eventClick: this.handleEventClick.bind(this),
         events: this.taskDetails ,
       };
@@ -107,7 +100,6 @@ ee
     }
     if(this.isuser)
     {
-      // console.log(arg.event.extendedProps.products.username);
       details.assignBy=arg.event.extendedProps.products.username
     }
     let dialogRef = this.dialog.open(DialogComponent,{
@@ -116,11 +108,5 @@ ee
       width: '700px'
     });
   }
-
-    // openDialog() {
-    //   let dialogRef = this.dialog.open(DialogComponent,{data:{name:'swetha'}});
-    // }
- 
-    
   }
   
